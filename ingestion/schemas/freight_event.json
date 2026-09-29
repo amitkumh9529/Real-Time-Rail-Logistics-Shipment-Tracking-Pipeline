@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FreightEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_version",
+    "event_type",
+    "shipment_id",
+    "origin",
+    "destination",
+    "weight_tons",
+    "planned_departure",
+    "planned_arrival",
+    "event_timestamp"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "event_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "BOOKED",
+        "LOADED",
+        "DEPARTED",
+        "ARRIVED_HUB",
+        "DELAYED",
+        "DEPARTED_HUB",
+        "DELIVERED",
+        "CANCELLED"
+      ]
+    },
+    "shipment_id": {
+      "type": "string",
+      "pattern": "^SHP-[0-9]{8}$"
+    },
+    "origin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "destination": {
+      "type": "string",
+      "minLength": 1
+    },
+    "weight_tons": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 500
+    },
+    "planned_departure": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "planned_arrival": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "event_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

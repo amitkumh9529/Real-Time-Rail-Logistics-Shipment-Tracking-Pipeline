@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TelemetryEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_version",
+    "shipment_id",
+    "train_id",
+    "latitude",
+    "longitude",
+    "speed_kph",
+    "temperature_c",
+    "fuel_level_pct",
+    "status",
+    "event_timestamp"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "event_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "shipment_id": {
+      "type": "string",
+      "pattern": "^SHP-[0-9]{8}$"
+    },
+    "train_id": {
+      "type": "string",
+      "pattern": "^TRN-[0-9]{6}$"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "speed_kph": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 200
+    },
+    "temperature_c": {
+      "type": "number",
+      "minimum": -40,
+      "maximum": 80
+    },
+    "fuel_level_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "IN_TRANSIT",
+        "STOPPED",
+        "DELAYED",
+        "AT_HUB",
+        "DELIVERED"
+      ]
+    },
+    "event_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}
